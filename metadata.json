@@ -1,0 +1,6 @@
+{
+  "name": "Lok Seva AI - Sarkari Seva, Ab AI Ke Saath",
+  "description": "AI-powered citizen and student assistant for government services, scholarships, eligibility, document wallet, smart application tracking, and problem resolution.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

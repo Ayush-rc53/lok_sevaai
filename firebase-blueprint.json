@@ -1,0 +1,92 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Citizen profile storing verified demographic, academic, and contact details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "state": { "type": "string" },
+        "district": { "type": "string" },
+        "category": { "type": "string" },
+        "collegeName": { "type": "string" },
+        "course": { "type": "string" },
+        "annualFamilyIncome": { "type": "number" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "name", "email"]
+    },
+    "Document": {
+      "title": "Document",
+      "description": "Digital credential stored in citizen vault",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "title": { "type": "string" },
+        "status": { "type": "string" },
+        "issueDate": { "type": "string" },
+        "expiryDate": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "type", "title", "status"]
+    },
+    "Application": {
+      "title": "Application",
+      "description": "Citizen government scheme or scholarship submission tracker",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "serviceId": { "type": "string" },
+        "title": { "type": "string" },
+        "currentStage": { "type": "string" },
+        "progressPercentage": { "type": "number" },
+        "status": { "type": "string" },
+        "statusLabel": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "title", "currentStage", "status"]
+    },
+    "AuditLog": {
+      "title": "AuditLog",
+      "description": "DPDP Act immutable consent and data access log",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "agentName": { "type": "string" },
+        "action": { "type": "string" },
+        "details": { "type": "string" },
+        "badge": { "type": "string" },
+        "timestamp": { "type": "string" }
+      },
+      "required": ["id", "userId", "action", "agentName"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Individual citizen profile document"
+    },
+    "/users/{userId}/documents/{documentId}": {
+      "schema": "Document",
+      "description": "Documents owned by the citizen"
+    },
+    "/users/{userId}/applications/{applicationId}": {
+      "schema": "Application",
+      "description": "Applications submitted or tracked by citizen"
+    },
+    "/users/{userId}/auditLogs/{logId}": {
+      "schema": "AuditLog",
+      "description": "Audit trails and consent records for the citizen"
+    }
+  }
+}
